@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xmg.wms.mapper.RoleMapper">
+    <resultMap type="Role" id="base_mapping">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="sn" column="sn"/>
+        <collection property="permissions" ofType="Permission"
+                    select="com.xmg.wms.mapper.PermissionMapper.selectByRoleId"
+					column="id"></collection>
+		<collection property="menus" ofType="Systemmenu"
+					select="com.xmg.wms.mapper.SystemmenuMapper.selectByRoleId" column="id">
+		</collection>
+
+    </resultMap>
+
+    <insert id="save" useGeneratedKeys="true" keyColumn="id"
+            keyProperty="id">
+		insert into role(name,sn)
+		values(#{name},#{sn})
+	</insert>
+
+    <delete id="delete">
+		delete from role where id=#{id}
+	</delete>
+    <update id="update">
+		update role set name = #{name},sn=#{sn} where id =
+		#{id}
+	</update>
+
+
+	<update id="updateMenuRelation">
+		INSERT  INTO  role_menu(role_id,menu_id) VALUES (#{rId},#{mId})
+	</update>
+
+
+
+	<select id="get" resultMap="base_mapping">
+		select * from role where id = #{id}
+	</select>
+    <select id="list" resultMap="base_mapping">
+		select * from role
+	</select>
+
+    <select id="getTotalCount" resultType="long">
+		select count(*) from role
+	</select>
+    <select id="pageQuery" resultMap="base_mapping">
+		select * from role
+		limit
+		#{beginIndex},#{pageSize}
+	</select>
+
+    <insert id="updateRelation">
+		insert into role_permission values(#{rid},#{pid})
+	</insert>
+
+    <delete id="deleteRelation">
+		delete from role_permission where role_id=#{rid}
+	</delete>
+	<delete id="deleteMenuRelation">
+		DELETE FROM role_menu WHERE role_id=#{id}
+	</delete>
+
+	<select id="getByEmpId" resultMap="base_mapping">
+		select r.* from role r inner
+		join employee_role er
+		on r.id=er.role_id
+		where er.employee_id=#{eid}
+	</select>
+
+
+	<select id="selectByRoleId" resultMap="base_mapping">
+		select p.* from systemmenu
+		m LEFT  JOIN role_menu rm
+		on m.id=rm.menu_id
+		where rm.role_id=#{menuId}
+	</select>
+</mapper>

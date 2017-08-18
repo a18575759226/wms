@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xmg.wms.mapper.OrderBillMapper" >
+  <resultMap id="BaseResultMap" type="com.xmg.wms.domain.OrderBill" >
+    <id column="id" property="id"  />
+	<result column="vdata" property="vdata"  />
+	<result column="sn" property="sn"  />
+	<result column="status" property="status"  />
+	<result column="auditTime" property="auditTime"  />
+	<result column="inputTime" property="inputTime"  />
+	<result column="totalAmount" property="totalAmount"  />
+	<result column="totalNumber" property="totalNumber"  />
+
+      <!--==============-->
+	<!--<result column="items" property="items"  />-->
+      <association property="auditor" column="auditor_id"
+                   select="com.xmg.wms.mapper.EmployeeMapper.get"></association>
+      <association property="inputTime" column="inputUser_id"
+                   select="com.xmg.wms.mapper.EmployeeMapper.get"></association>
+      <association property="supplier" column="supplier_id"
+                   select="com.xmg.wms.mapper.EmployeeMapper.get">
+      </association>
+      <collection property="items" column="id" select="queryItemsByBillId"></collection>
+  </resultMap>
+
+    <!--这个把账单的里面调用进来 然后 一般保存一个商品的信息先把账单创建好 然后在把商品的信息录进去-->
+    <resultMap id="BaseItemResultMap" type="com.xmg.wms.domain.OrderBillItem">
+
+    </resultMap>
+
+
+
+
+  <delete id="delete" parameterType="long" >
+    delete from orderBill where id = #{id}
+  </delete>
+  <insert id="save" parameterType="com.xmg.wms.domain.OrderBill" useGeneratedKeys="true" keyProperty="id" >
+    insert into orderBill 
+    (vdata,sn,auditor_id,items,status,auditTime,inputTime,totalAmount,totalNumber,inputUser_id,supplier_id)
+    values
+    (#{vdata},#{sn},#{auditor.id},#{items},#{status},#{auditTime},#{inputTime},#{totalAmount},#{totalNumber},#{inputUser.id},#{supplier.id})
+  </insert>
+  <update id="update" parameterType="com.xmg.wms.domain.OrderBill" >
+    update orderBill
+    set
+	    sn=#{sn},
+	    auditor_id=#{auditor.id},
+	    vdata=#{vdata},
+	    items=#{items},
+	    status=#{status},
+	    auditTime=#{auditTime},
+	    inputTime=#{inputTime},
+	    totalAmount=#{totalAmount},
+	    totalNumber=#{totalNumber},
+	    inputUser_id=#{inputUser.id},
+	    supplier_id=#{supplier.id}
+    where id = #{id}
+  </update>
+  <select id="get" resultMap="BaseResultMap" parameterType="long" >
+    select * from orderBill where id = #{id}
+  </select>
+  <select id="list" resultMap="BaseResultMap" >
+    select * from orderBill
+  </select>
+  <sql id="conditionSql">
+  	<where>
+  	</where>
+  </sql>
+  <select id="getTotalCount" resultType="long">
+  	select count(*) from orderBill
+  	<include refid="conditionSql"/>
+  </select>
+  <select id="pageQuery" resultMap="BaseResultMap">
+  	select * from orderBill
+  	<include refid="conditionSql"/>
+  	limit #{beginIndex},#{pageSize}
+  </select>
+    <!--这个就是根据id查询所有的明细数据集合 然后在显示到页面上面-->
+    <select id="queryItemsByBillId" parameterType="Long" resultMap="BaseItemResultMap">
+      SELECT  *FROM orderbillitem WHERE bill_id=#{billId}
+    </select>
+
+</mapper>

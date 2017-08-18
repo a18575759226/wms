@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.springframework:spring-context:4.2.4.Release">
+    <CLASSES>
+      <root url="jar://D:/Opensources/MyRepository_bak2/MyRepository/org/springframework/spring-context/4.2.4.RELEASE/spring-context-4.2.4.RELEASE.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://D:/Opensources/MyRepository_bak2/MyRepository/org/springframework/spring-context/4.2.4.Release/spring-context-4.2.4.Release-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://D:/Opensources/MyRepository_bak2/MyRepository/org/springframework/spring-context/4.2.4.Release/spring-context-4.2.4.Release-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

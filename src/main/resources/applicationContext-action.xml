@@ -1,0 +1,39 @@
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans         http://www.springframework.org/schema/beans/spring-beans.xsd         http://www.springframework.org/schema/context         http://www.springframework.org/schema/context/spring-context.xsd         http://www.springframework.org/schema/aop         http://www.springframework.org/schema/aop/spring-aop.xsd         http://www.springframework.org/schema/tx         http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
+	<!-- 将action交给Spring管理 -->
+	<bean id="departmentAction" class="com.xmg.wms.web.action.DepartmentAction" scope="prototype">
+		<property name="deptService" ref="deptService"/>
+	</bean>
+	<bean id="employeeAction" class="com.xmg.wms.web.action.EmployeeAction" scope="prototype">
+		<property name="empService" ref="empService"/>
+		<property name="deptService" ref="deptService"/>
+		<property name="roleService" ref="roleService"/>
+	</bean>
+	<bean id="permissionAction" class="com.xmg.wms.web.action.PermissionAction" scope="prototype">
+		<property name="permissionService" ref="permissionService"/>
+	</bean>
+	<bean id="roleAction" class="com.xmg.wms.web.action.RoleAction" scope="prototype">
+		<property name="roleService" ref="roleService"/>
+		<property name="permissionService" ref="permissionService"/>
+		<property name="systemmenuService" ref="systemmenuService"/>
+	</bean>
+	<bean id="loginAction" class="com.xmg.wms.web.action.LoginAction" scope="prototype">
+		<property name="employeeService" ref="empService"/>
+	</bean>
+
+<bean id="dogAction" class="com.xmg.wms.web.action.DogAction" scope="prototype">
+	<property name="dogService" ref="dogService"/>
+</bean><bean id="systemmenuAction" class="com.xmg.wms.web.action.SystemmenuAction" scope="prototype">
+	<property name="systemmenuService" ref="systemmenuService"/>
+</bean><bean id="brandAction" class="com.xmg.wms.web.action.BrandAction" scope="prototype">
+	<property name="brandService" ref="brandService"/>
+</bean><bean id="supplierAction" class="com.xmg.wms.web.action.SupplierAction" scope="prototype">
+	<property name="supplierService" ref="supplierService"/>
+</bean><bean id="productAction" class="com.xmg.wms.web.action.ProductAction" scope="prototype">
+	<property name="productService" ref="productService"/>
+	<property name="brandService" ref="brandService"/>
+</bean><bean id="orderBillAction" class="com.xmg.wms.web.action.OrderBillAction" scope="prototype">
+	<property name="orderBillService" ref="orderBillService"/>
+</bean><bean id="orderBillAction" class="com.xmg.wms.web.action.OrderBillAction" scope="prototype">
+	<property name="orderBillService" ref="orderBillService"/>
+</bean></beans>

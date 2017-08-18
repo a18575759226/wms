@@ -1,0 +1,32 @@
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans         http://www.springframework.org/schema/beans/spring-beans.xsd         http://www.springframework.org/schema/context         http://www.springframework.org/schema/context/spring-context.xsd         http://www.springframework.org/schema/aop         http://www.springframework.org/schema/aop/spring-aop.xsd         http://www.springframework.org/schema/tx         http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
+
+	<!-- 配置Service的Bean对象 -->
+	<bean id="deptService" class="com.xmg.wms.service.impl.DepartmentServiceImpl">
+		<property name="deptMapper" ref="departmentMapper"/>
+		<property name="empMapper" ref="employeeMapper"/>
+	</bean>
+	<bean id="empService" class="com.xmg.wms.service.impl.EmployeeServiceImpl">
+		<property name="empMapper" ref="employeeMapper"/>
+	</bean>
+	<bean id="permissionService" class="com.xmg.wms.service.impl.PermissionServiceImpl">
+		<property name="permissionMapper" ref="permissionMapper"/>
+	</bean>
+	<bean id="roleService" class="com.xmg.wms.service.impl.RoleServiceImpl">
+		<property name="roleMapper" ref="roleMapper"/>
+	</bean>
+<bean id="dogService" class="com.xmg.wms.service.impl.DogServiceImpl">
+	<property name="dogMapper" ref="dogMapper"/>
+</bean><bean id="systemmenuService" class="com.xmg.wms.service.impl.SystemmenuServiceImpl">
+	<property name="systemmenuMapper" ref="systemmenuMapper"/>
+</bean><bean id="brandService" class="com.xmg.wms.service.impl.BrandServiceImpl">
+	<property name="brandMapper" ref="brandMapper"/>
+</bean><bean id="supplierService" class="com.xmg.wms.service.impl.SupplierServiceImpl">
+	<property name="supplierMapper" ref="supplierMapper"/>
+</bean><bean id="productService" class="com.xmg.wms.service.impl.ProductServiceImpl">
+	<property name="productMapper" ref="productMapper"/>
+</bean><bean id="orderBillService" class="com.xmg.wms.service.impl.OrderBillServiceImpl">
+	<property name="orderBillMapper" ref="orderBillMapper"/>
+</bean><bean id="orderBillService" class="com.xmg.wms.service.impl.OrderBillServiceImpl">
+	<property name="orderBillMapper" ref="orderBillMapper"/>
+</bean></beans>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xmg.wms.mapper.StudentMapper">
+	<resultMap type="Student" id="base_mapping">
+		<id property="id" column="id" />
+		<result property="name" column="name" />
+		<collection property="teachers" ofType="Teacher">
+			<result property="id" column="tid" />
+			<result property="name" column="tname" />
+		</collection>
+	</resultMap>
+
+	<insert id="save" useGeneratedKeys="true" keyColumn="id"
+		keyProperty="id">
+		insert into student(name) values(#{name})
+	</insert>
+
+	<select id="get" resultMap="base_mapping">
+		select s.*,t.id tid, t.name tname
+		from student s inner join teacher_student ts on s.id = ts.student_id
+		inner join teacher t on ts.teacher_id=t.id
+		where s.id=#{id}
+	</select>
+
+	<insert id="updateRelation">
+		insert into teacher_student
+		values(#{teacherId},#{studentId})
+	</insert>
+
+</mapper>

@@ -1,0 +1,825 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="MySQL - wms1@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="2.6">
+    <schema id="1" name="wms1">
+      <visible>1</visible>
+    </schema>
+    <schema id="2" name="hd"/>
+    <schema id="3" name="information_schema"/>
+    <schema id="4" name="jdbc"/>
+    <schema id="5" name="jdbcdemo"/>
+    <schema id="6" name="jdbcdemo1"/>
+    <schema id="7" name="jdbcdome"/>
+    <schema id="8" name="mmss"/>
+    <schema id="9" name="mybatis"/>
+    <schema id="10" name="mybatise"/>
+    <schema id="11" name="mysql"/>
+    <schema id="12" name="performance_schema"/>
+    <schema id="13" name="rbac"/>
+    <schema id="14" name="ssm"/>
+    <schema id="15" name="ssm1"/>
+    <schema id="16" name="sys"/>
+    <schema id="17" name="wms"/>
+    <table id="18" parent="1" name="brand"/>
+    <table id="19" parent="1" name="client"/>
+    <table id="20" parent="1" name="department"/>
+    <table id="21" parent="1" name="depot"/>
+    <table id="22" parent="1" name="employee"/>
+    <table id="23" parent="1" name="employee_role"/>
+    <table id="24" parent="1" name="orderbill"/>
+    <table id="25" parent="1" name="orderbillitem"/>
+    <table id="26" parent="1" name="permission"/>
+    <table id="27" parent="1" name="product"/>
+    <table id="28" parent="1" name="productstock"/>
+    <table id="29" parent="1" name="role"/>
+    <table id="30" parent="1" name="role_menu"/>
+    <table id="31" parent="1" name="role_permission"/>
+    <table id="32" parent="1" name="saleaccount"/>
+    <table id="33" parent="1" name="stockincomebill"/>
+    <table id="34" parent="1" name="stockincomebillitem"/>
+    <table id="35" parent="1" name="stockoutcomebill"/>
+    <table id="36" parent="1" name="stockoutcomebillitem"/>
+    <table id="37" parent="1" name="supplier"/>
+    <table id="38" parent="1" name="systemmenu"/>
+    <column id="39" parent="18" name="id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="40" parent="18" name="name">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="41" parent="18" name="sn">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <key id="42" parent="18" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="43" parent="19" name="id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="44" parent="19" name="name">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="45" parent="19" name="sn">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="46" parent="19" name="phone">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <key id="47" parent="19" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="48" parent="20" name="id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="49" parent="20" name="name">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="50" parent="20" name="sn">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <key id="51" parent="20" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="52" parent="21" name="id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="53" parent="21" name="location">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="54" parent="21" name="name">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <key id="55" parent="21" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="56" parent="22" name="id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="57" parent="22" name="name">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="58" parent="22" name="password">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="59" parent="22" name="email">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="60" parent="22" name="age">
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="61" parent="22" name="admin">
+      <data-type>bit(1)|0</data-type>
+    </column>
+    <column id="62" parent="22" name="dept_id">
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <index id="63" parent="22" name="FK_jupc981pvryfs7lbgtpoy6mmh">
+      <columns>dept_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <key id="64" parent="22" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <foreign-key id="65" parent="22" name="employee_ibfk_1">
+      <columns>dept_id</columns>
+      <ref-key>~.department.PRIMARY</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <column id="66" parent="23" name="employee_id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <column id="67" parent="23" name="role_id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <index id="68" parent="23" name="FK_3ene23nq9uvnj1cktmk8ydhah">
+      <columns>role_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <index id="69" parent="23" name="FK_3f8wqxdumr93k2hevf7cuwqxg">
+      <columns>employee_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <foreign-key id="70" parent="23" name="employee_role_ibfk_2">
+      <columns>employee_id</columns>
+      <ref-key>~.employee.PRIMARY</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="71" parent="23" name="employee_role_ibfk_1">
+      <columns>role_id</columns>
+      <ref-key>~.role.PRIMARY</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <column id="72" parent="24" name="id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="73" parent="24" name="sn">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="74" parent="24" name="vdate">
+      <data-type>datetime|0</data-type>
+    </column>
+    <column id="75" parent="24" name="status">
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="76" parent="24" name="totalAmount">
+      <data-type>decimal(19,2)|0</data-type>
+    </column>
+    <column id="77" parent="24" name="totalNumber">
+      <data-type>decimal(19,2)|0</data-type>
+    </column>
+    <column id="78" parent="24" name="auditTime">
+      <data-type>datetime|0</data-type>
+    </column>
+    <column id="79" parent="24" name="inputTime">
+      <data-type>datetime|0</data-type>
+    </column>
+    <column id="80" parent="24" name="inputUser_id">
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <column id="81" parent="24" name="auditor_id">
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <column id="82" parent="24" name="supplier_id">
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <index id="83" parent="24" name="FK_9sb894e7wg5qdlrdj00m6w64m">
+      <columns>auditor_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <index id="84" parent="24" name="FK_c25usoo9h8v8xck8gnb5uw42p">
+      <columns>inputUser_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <index id="85" parent="24" name="FK_i8lhd25r9a5syjwaksxe07hgj">
+      <columns>supplier_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <key id="86" parent="24" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <foreign-key id="87" parent="24" name="orderbill_ibfk_2">
+      <columns>inputUser_id</columns>
+      <ref-key>~.employee.PRIMARY</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="88" parent="24" name="orderbill_ibfk_1">
+      <columns>auditor_id</columns>
+      <ref-key>~.employee.PRIMARY</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="89" parent="24" name="orderbill_ibfk_3">
+      <columns>supplier_id</columns>
+      <ref-key>~.supplier.PRIMARY</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <column id="90" parent="25" name="id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="91" parent="25" name="costPrice">
+      <data-type>decimal(19,2)|0</data-type>
+    </column>
+    <column id="92" parent="25" name="number">
+      <data-type>decimal(19,2)|0</data-type>
+    </column>
+    <column id="93" parent="25" name="amount">
+      <data-type>decimal(19,2)|0</data-type>
+    </column>
+    <column id="94" parent="25" name="remark">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="95" parent="25" name="product_id">
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <column id="96" parent="25" name="bill_id">
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <index id="97" parent="25" name="FK_1ur8cgf80jawiv49glygo4tix">
+      <columns>product_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <index id="98" parent="25" name="FK_i4m0hnuvwqaaw0s83l789adi0">
+      <columns>bill_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <key id="99" parent="25" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <foreign-key id="100" parent="25" name="orderbillitem_ibfk_1">
+      <columns>product_id</columns>
+      <ref-key>~.product.PRIMARY</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="101" parent="25" name="orderbillitem_ibfk_2">
+      <columns>bill_id</columns>
+      <ref-key>~.orderbill.PRIMARY</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <column id="102" parent="26" name="id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="103" parent="26" name="name">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="104" parent="26" name="expression">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <key id="105" parent="26" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="106" parent="27" name="id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="107" parent="27" name="name">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="108" parent="27" name="sn">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="109" parent="27" name="costPrice">
+      <data-type>decimal(19,2)|0</data-type>
+    </column>
+    <column id="110" parent="27" name="salePrice">
+      <data-type>decimal(19,2)|0</data-type>
+    </column>
+    <column id="111" parent="27" name="imagePath">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="112" parent="27" name="intro">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="113" parent="27" name="brand_id">
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <index id="114" parent="27" name="FK_1td6gorl25rsvufiiive2svlx">
+      <columns>brand_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <key id="115" parent="27" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <foreign-key id="116" parent="27" name="product_ibfk_1">
+      <columns>brand_id</columns>
+      <ref-key>~.brand.PRIMARY</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <column id="117" parent="28" name="id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="118" parent="28" name="price">
+      <data-type>decimal(19,2)|0</data-type>
+    </column>
+    <column id="119" parent="28" name="storeNumber">
+      <data-type>decimal(19,2)|0</data-type>
+    </column>
+    <column id="120" parent="28" name="amount">
+      <data-type>decimal(19,2)|0</data-type>
+    </column>
+    <column id="121" parent="28" name="incomeDate">
+      <data-type>datetime|0</data-type>
+    </column>
+    <column id="122" parent="28" name="outcomeDate">
+      <data-type>datetime|0</data-type>
+    </column>
+    <column id="123" parent="28" name="product_id">
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <column id="124" parent="28" name="depot_id">
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <index id="125" parent="28" name="FK_odeqlqoefmw21daq1smn4c7gy">
+      <columns>product_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <index id="126" parent="28" name="FK_q8smstvleeay56k9yew812e9h">
+      <columns>depot_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <key id="127" parent="28" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <foreign-key id="128" parent="28" name="productstock_ibfk_1">
+      <columns>product_id</columns>
+      <ref-key>~.product.PRIMARY</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="129" parent="28" name="productstock_ibfk_2">
+      <columns>depot_id</columns>
+      <ref-key>~.depot.PRIMARY</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <column id="130" parent="29" name="id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="131" parent="29" name="name">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="132" parent="29" name="sn">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <key id="133" parent="29" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="134" parent="30" name="role_id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <column id="135" parent="30" name="menu_id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <index id="136" parent="30" name="FK_fiaxn00niduy5wvs9jyk661f1">
+      <columns>role_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <index id="137" parent="30" name="FK_n9rxuwvg9qeaxqfchovifd9hw">
+      <columns>menu_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <foreign-key id="138" parent="30" name="role_menu_ibfk_1">
+      <columns>role_id</columns>
+      <ref-key>~.role.PRIMARY</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="139" parent="30" name="role_menu_ibfk_2">
+      <columns>menu_id</columns>
+      <ref-key>~.systemmenu.PRIMARY</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <column id="140" parent="31" name="role_id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <column id="141" parent="31" name="permission_id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <index id="142" parent="31" name="FK_d4atqq8ege1sij0316vh2mxfu">
+      <columns>role_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <index id="143" parent="31" name="FK_qfkbccnh2c5o4tc7akq5x11wv">
+      <columns>permission_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <foreign-key id="144" parent="31" name="role_permission_ibfk_1">
+      <columns>role_id</columns>
+      <ref-key>~.role.PRIMARY</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="145" parent="31" name="role_permission_ibfk_2">
+      <columns>permission_id</columns>
+      <ref-key>~.permission.PRIMARY</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <column id="146" parent="32" name="id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="147" parent="32" name="vdate">
+      <data-type>datetime|0</data-type>
+    </column>
+    <column id="148" parent="32" name="number">
+      <data-type>decimal(19,2)|0</data-type>
+    </column>
+    <column id="149" parent="32" name="costPrice">
+      <data-type>decimal(19,2)|0</data-type>
+    </column>
+    <column id="150" parent="32" name="costAmount">
+      <data-type>decimal(19,2)|0</data-type>
+    </column>
+    <column id="151" parent="32" name="salePrice">
+      <data-type>decimal(19,2)|0</data-type>
+    </column>
+    <column id="152" parent="32" name="saleAmount">
+      <data-type>decimal(19,2)|0</data-type>
+    </column>
+    <column id="153" parent="32" name="product_id">
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <column id="154" parent="32" name="saleman_id">
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <column id="155" parent="32" name="client_id">
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <index id="156" parent="32" name="FK_1irbvbygho7ysu47gvd97xhh5">
+      <columns>client_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <index id="157" parent="32" name="FK_5ie3vrst6b6favmphi2lo8qgo">
+      <columns>product_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <index id="158" parent="32" name="FK_9ghkciknv2w9g3hmec7ks1517">
+      <columns>saleman_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <key id="159" parent="32" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <foreign-key id="160" parent="32" name="saleaccount_ibfk_2">
+      <columns>product_id</columns>
+      <ref-key>~.product.PRIMARY</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="161" parent="32" name="saleaccount_ibfk_3">
+      <columns>saleman_id</columns>
+      <ref-key>~.employee.PRIMARY</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="162" parent="32" name="saleaccount_ibfk_1">
+      <columns>client_id</columns>
+      <ref-key>~.client.PRIMARY</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <column id="163" parent="33" name="id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="164" parent="33" name="sn">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="165" parent="33" name="vdate">
+      <data-type>datetime|0</data-type>
+    </column>
+    <column id="166" parent="33" name="status">
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="167" parent="33" name="totalAmount">
+      <data-type>decimal(19,2)|0</data-type>
+    </column>
+    <column id="168" parent="33" name="totalNumber">
+      <data-type>decimal(19,2)|0</data-type>
+    </column>
+    <column id="169" parent="33" name="auditTime">
+      <data-type>datetime|0</data-type>
+    </column>
+    <column id="170" parent="33" name="inputTime">
+      <data-type>datetime|0</data-type>
+    </column>
+    <column id="171" parent="33" name="inputUser_id">
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <column id="172" parent="33" name="auditor_id">
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <column id="173" parent="33" name="depot_id">
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <index id="174" parent="33" name="FK_2r4lvwfhxvf706vnl3kosb4ge">
+      <columns>inputUser_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <index id="175" parent="33" name="FK_mt5u1rj5oa43oqgm1i6faut29">
+      <columns>auditor_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <index id="176" parent="33" name="FK_rucpa7mjq86jex50rptjti4wj">
+      <columns>depot_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <key id="177" parent="33" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <foreign-key id="178" parent="33" name="stockincomebill_ibfk_1">
+      <columns>inputUser_id</columns>
+      <ref-key>~.employee.PRIMARY</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="179" parent="33" name="stockincomebill_ibfk_2">
+      <columns>auditor_id</columns>
+      <ref-key>~.employee.PRIMARY</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="180" parent="33" name="stockincomebill_ibfk_3">
+      <columns>depot_id</columns>
+      <ref-key>~.depot.PRIMARY</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <column id="181" parent="34" name="id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="182" parent="34" name="costPrice">
+      <data-type>decimal(19,2)|0</data-type>
+    </column>
+    <column id="183" parent="34" name="number">
+      <data-type>decimal(19,2)|0</data-type>
+    </column>
+    <column id="184" parent="34" name="amount">
+      <data-type>decimal(19,2)|0</data-type>
+    </column>
+    <column id="185" parent="34" name="remark">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="186" parent="34" name="product_id">
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <column id="187" parent="34" name="bill_id">
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <index id="188" parent="34" name="FK_j9lqbjftlk2lmsgkdjo9hwgqc">
+      <columns>product_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <index id="189" parent="34" name="FK_k50mmys429hikidmwv52fo1ph">
+      <columns>bill_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <key id="190" parent="34" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <foreign-key id="191" parent="34" name="stockincomebillitem_ibfk_1">
+      <columns>product_id</columns>
+      <ref-key>~.product.PRIMARY</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="192" parent="34" name="stockincomebillitem_ibfk_2">
+      <columns>bill_id</columns>
+      <ref-key>~.stockincomebill.PRIMARY</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <column id="193" parent="35" name="id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="194" parent="35" name="sn">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="195" parent="35" name="vdate">
+      <data-type>datetime|0</data-type>
+    </column>
+    <column id="196" parent="35" name="status">
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="197" parent="35" name="totalAmount">
+      <data-type>decimal(19,2)|0</data-type>
+    </column>
+    <column id="198" parent="35" name="totalNumber">
+      <data-type>decimal(19,2)|0</data-type>
+    </column>
+    <column id="199" parent="35" name="auditTime">
+      <data-type>datetime|0</data-type>
+    </column>
+    <column id="200" parent="35" name="inputTime">
+      <data-type>datetime|0</data-type>
+    </column>
+    <column id="201" parent="35" name="inputUser_id">
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <column id="202" parent="35" name="auditor_id">
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <column id="203" parent="35" name="depot_id">
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <column id="204" parent="35" name="client_id">
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <index id="205" parent="35" name="FK_3mqhrl0cptc2ogteu3gfka6b7">
+      <columns>inputUser_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <index id="206" parent="35" name="FK_dj18me4bk3ajp4aj4f6ky8yp6">
+      <columns>depot_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <index id="207" parent="35" name="FK_kdyag6t1r63gqjkpclp0n6tmb">
+      <columns>client_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <index id="208" parent="35" name="FK_krhcbh1hatkrdh9wvvbfis2eb">
+      <columns>auditor_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <key id="209" parent="35" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <foreign-key id="210" parent="35" name="stockoutcomebill_ibfk_1">
+      <columns>inputUser_id</columns>
+      <ref-key>~.employee.PRIMARY</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="211" parent="35" name="stockoutcomebill_ibfk_4">
+      <columns>auditor_id</columns>
+      <ref-key>~.employee.PRIMARY</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="212" parent="35" name="stockoutcomebill_ibfk_2">
+      <columns>depot_id</columns>
+      <ref-key>~.depot.PRIMARY</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="213" parent="35" name="stockoutcomebill_ibfk_3">
+      <columns>client_id</columns>
+      <ref-key>~.client.PRIMARY</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <column id="214" parent="36" name="id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="215" parent="36" name="salePrice">
+      <data-type>decimal(19,2)|0</data-type>
+    </column>
+    <column id="216" parent="36" name="number">
+      <data-type>decimal(19,2)|0</data-type>
+    </column>
+    <column id="217" parent="36" name="amount">
+      <data-type>decimal(19,2)|0</data-type>
+    </column>
+    <column id="218" parent="36" name="remark">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="219" parent="36" name="product_id">
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <column id="220" parent="36" name="bill_id">
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <index id="221" parent="36" name="FK_cc8ixopcgfe0he98ae11erxlb">
+      <columns>bill_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <index id="222" parent="36" name="FK_cr4n4jpf9y0xl98ijheutb4fn">
+      <columns>product_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <key id="223" parent="36" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <foreign-key id="224" parent="36" name="stockoutcomebillitem_ibfk_2">
+      <columns>product_id</columns>
+      <ref-key>~.product.PRIMARY</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="225" parent="36" name="stockoutcomebillitem_ibfk_1">
+      <columns>bill_id</columns>
+      <ref-key>~.stockoutcomebill.PRIMARY</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <column id="226" parent="37" name="id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="227" parent="37" name="name">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="228" parent="37" name="phone">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="229" parent="37" name="address">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <key id="230" parent="37" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="231" parent="38" name="id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="232" parent="38" name="name">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="233" parent="38" name="url">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="234" parent="38" name="sn">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="235" parent="38" name="parent_id">
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <index id="236" parent="38" name="FK_oufx29snoe4anqhc8qhl48t90">
+      <columns>parent_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <key id="237" parent="38" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <foreign-key id="238" parent="38" name="systemmenu_ibfk_1">
+      <columns>parent_id</columns>
+      <ref-key>PRIMARY</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+  </database-model>
+</dataSource>

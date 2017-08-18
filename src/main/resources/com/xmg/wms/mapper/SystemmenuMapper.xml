@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xmg.wms.mapper.SystemmenuMapper" >
+  <resultMap id="BaseResultMap" type="com.xmg.wms.domain.Systemmenu" >
+    <id column="id" property="id"  />
+<!--	<result column="children" property="children"  />
+	<result column="parent" property="parent"  />-->
+	<result column="sn" property="sn"  />
+	<result column="url" property="url"  />
+	<result column="name" property="name"  />
+      <association property="parent" javaType="com.xmg.wms.domain.Systemmenu" select="get" column="parent_id"></association>
+   </resultMap>
+  <delete id="delete" parameterType="long" >
+    delete from systemmenu where id = #{id}
+  </delete>
+  <insert id="save" parameterType="com.xmg.wms.domain.Systemmenu" useGeneratedKeys="true" keyProperty="id" >
+    insert into systemmenu 
+    (parent_id,sn,url,name)
+    values
+    (#{parent.id},#{sn},#{url},#{name})
+  </insert>
+  <update id="update" parameterType="com.xmg.wms.domain.Systemmenu" >
+    update systemmenu
+    set
+
+	    parent_id=#{parent.id},
+	    sn=#{sn},
+	    url=#{url},
+	    name=#{name}
+    where id = #{id}
+  </update>
+  <select id="get" resultMap="BaseResultMap" parameterType="long" >
+    select * from systemmenu where id = #{id}
+  </select>
+  <select id="list" resultMap="BaseResultMap" >
+    select * from systemmenu
+  </select>
+  <sql id="conditionSql">
+  	<where>
+        <choose>
+            <when test="parentId>0">
+             AND  parent_id=#{parentId}
+            </when>
+            <otherwise>
+              and  parent_id is null
+            </otherwise>
+        </choose>
+  	</where>
+  </sql>
+  <select id="getTotalCount" resultType="long">
+  	select count(*) from systemmenu
+  	<include refid="conditionSql"/>
+  </select>
+  <select id="pageQuery" resultMap="BaseResultMap">
+  	select * from systemmenu
+  	<include refid="conditionSql"/>
+  	limit #{beginIndex},#{pageSize}
+  </select>
+    <select id="selectByRoleId" resultMap="BaseResultMap">
+    select m.* from systemmenu
+    m LEFT JOIN role_menu rm
+    on m.id=rm.menu_id
+    where rm.role_id=#{menuId}
+</select>
+
+
+
+    <select id="queryMenusByParentSn" resultMap="BaseResultMap">
+      SELECT  * FROM  systemmenu WHERE parent_id =
+      (SELECT id FROM systemmenu where sn=#{parentSn})
+
+
+    </select>
+    <select id="queryMenusByParentSnAndEmpId" resultMap="BaseResultMap">
+       SELECT * FROM systemmenu WHERE id in
+       (
+         SELECT  DISTINCT menu_id FROM role_menu where role_id in
+         (SELECT  role_id FROM  employee_role where employee_id =#{empId})
+        )
+       and parent_id=(select id from systemmenu where sn=#{parentId} )
+    </select>
+</mapper>

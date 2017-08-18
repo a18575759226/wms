@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xmg.wms.mapper.EmployeeMapper">
+	<resultMap type="Employee" id="base_mapping">
+		<result property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="password" column="password" />
+		<result property="email" column="email" />
+		<result property="age" column="age" />
+		<result property="admin" column="admin" />
+		<association property="dept" javaType="Department">
+			<result property="id" column="did" />
+			<result property="name" column="dname" />
+			<result property="sn" column="dsn" />
+		</association>
+		<collection property="roles" ofType="Role"
+					select="com.xmg.wms.mapper.RoleMapper.getByEmpId" column="id"></collection>
+	</resultMap>
+
+	<insert id="save" useGeneratedKeys="true" keyColumn="id"
+		keyProperty="id">
+		insert into
+		employee(name,password,email,age,admin,dept_id)
+		values(#{name},#{password},#{email},#{age},#{admin},#{dept.id})
+	</insert>
+
+	<delete id="delete">
+		delete from employee where id=#{id}
+	</delete>
+	
+	<!--这里写批量删除的sql-->
+	<delete id="batchDelete" >
+		DELETE  FROM  employee  WHERE id IN
+		<foreach collection="list" item="item" index="(" close=")" separator=",">
+			#{item}
+		</foreach>
+	</delete>
+	<!--还有就是删除他们之间的关系的sql-->
+	<delete id="batchDeleteRelation">
+		DELETE FROM employee_role WHERE employee_id IN
+		<foreach collection="list" item="item" index="(" close=")" separator=",">
+			#{item}
+		</foreach>
+	</delete>
+
+	
+	
+
+	<update id="update">
+		update employee
+		<set>
+			<if test="name!=null">
+				name=#{name},
+			</if>
+			<if test="password!=null">
+				password=#{password},
+			</if>
+			<if test="email!=null">
+				email=#{email},
+			</if>
+			<if test="age!=null">
+				age=#{age},
+			</if>
+			<if test="admin!=null">
+				admin=#{admin},
+			</if>
+			<if test="dept!=null">
+				dept_id=#{dept.id},
+			</if>
+		</set>
+		where id=#{id}
+	</update>
+
+	<sql id="column_sql">
+		e.*,d.id as did,d.name as dname,d.sn as dsn
+	</sql>
+
+	<select id="get" resultMap="base_mapping">
+		select
+		<include refid="column_sql"></include>
+		from employee e left join
+		department d
+		on
+		e.dept_id=d.id
+		where e.id=#{id}
+	</select>
+	<select id="list" resultMap="base_mapping">
+		select
+		<include refid="column_sql"></include>
+		from employee e left join
+		department d
+		on
+		e.dept_id=d.id
+	</select>
+
+	<update id="updateByDeptId">
+		update employee set dept_id=null where
+		dept_id=#{deptId}
+	</update>
+
+	<sql id="condition_sql">
+		<where>
+			<if test="keyword!=null">
+				(e.name like concat('%',#{keyword},'%')
+				or e.email like
+				concat('%',#{keyword},'%'))
+			</if>
+			<if test="deptId!=null and deptId != -1">
+				and e.dept_id=#{deptId}
+			</if>
+		</where>
+	</sql>
+
+	<select id="pageQuery" resultMap="base_mapping">
+		select
+		<include refid="column_sql"></include>
+		from employee e left
+		join
+		department d
+		on
+		e.dept_id=d.id
+		<include refid="condition_sql"></include>
+		limit #{beginIndex},#{pageSize}
+	</select>
+
+	<select id="getTotalCount" resultType="long">
+		select count(e.id)
+		from employee e left
+		join
+		department d
+		on
+		e.dept_id=d.id
+		<include refid="condition_sql"></include>
+	</select>
+
+	<insert id="updateRelation">
+		insert into employee_role values(#{eid},#{rid})
+	</insert>
+
+	<delete id="deleteRelation">
+		delete from employee_role where employee_id=#{eid}
+	</delete>
+
+	<select id="checkLogin" resultMap="base_mapping">
+		select * from employee where
+		name=#{username} and password = #{password}
+	</select>
+</mapper>
