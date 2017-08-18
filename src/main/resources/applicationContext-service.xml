@@ -27,6 +27,5 @@
 	<property name="productMapper" ref="productMapper"/>
 </bean><bean id="orderBillService" class="com.xmg.wms.service.impl.OrderBillServiceImpl">
 	<property name="orderBillMapper" ref="orderBillMapper"/>
-</bean><bean id="orderBillService" class="com.xmg.wms.service.impl.OrderBillServiceImpl">
-	<property name="orderBillMapper" ref="orderBillMapper"/>
+
 </bean></beans>

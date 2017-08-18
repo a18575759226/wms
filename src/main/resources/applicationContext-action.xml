@@ -34,6 +34,5 @@
 	<property name="brandService" ref="brandService"/>
 </bean><bean id="orderBillAction" class="com.xmg.wms.web.action.OrderBillAction" scope="prototype">
 	<property name="orderBillService" ref="orderBillService"/>
-</bean><bean id="orderBillAction" class="com.xmg.wms.web.action.OrderBillAction" scope="prototype">
-	<property name="orderBillService" ref="orderBillService"/>
+
 </bean></beans>

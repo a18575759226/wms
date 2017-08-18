@@ -44,7 +44,5 @@
 </bean><bean id="orderBillMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
     <property name="mapperInterface" value="com.xmg.wms.mapper.OrderBillMapper"/>
     <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-</bean><bean id="orderBillMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-    <property name="mapperInterface" value="com.xmg.wms.mapper.OrderBillMapper"/>
-    <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+
 </bean></beans>
